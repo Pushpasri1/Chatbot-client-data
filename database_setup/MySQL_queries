@@ -1,4 +1,4 @@
---RUN THESE QUERIES IN MySQL Workbench and creater connection (through db.js file in backend folder)
+--RUN THESE QUERIES IN MySQL Workbench and create connection (through db.js file in backend folder)
 CREATE DATABASE client_data;
 
 SHOW DATABASES;
