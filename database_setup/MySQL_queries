@@ -1,0 +1,59 @@
+--RUN THESE QUERIES IN MySQL Workbench and creater connection (through db.js file in backend folder)
+CREATE DATABASE client_data;
+
+SHOW DATABASES;
+
+USE client_data;
+
+CREATE TABLE OPT_Party (
+    PTY_ID CHAR(36) PRIMARY KEY,
+    PTY_FirstName VARCHAR(100),
+    PTY_LastName VARCHAR(100),
+    PTY_Phone VARCHAR(15),
+    PTY_SSN VARCHAR(11)
+);
+
+CREATE TABLE OPT_Address (
+    Add_ID CHAR(36) PRIMARY KEY,
+    Add_Line1 VARCHAR(255),
+    Add_Line2 VARCHAR(255),
+    Add_City VARCHAR(100),
+    Add_State CHAR(36),
+    Add_Zip VARCHAR(10),
+    Add_PartyID CHAR(36),
+    FOREIGN KEY (Add_PartyID) REFERENCES OPT_Party(PTY_ID)
+);
+
+CREATE TABLE SYS_State (
+    Stt_ID CHAR(36) PRIMARY KEY,
+    Stt_Name VARCHAR(100),
+    Stt_Code VARCHAR(10)
+);
+
+
+-- Insert sample data into OPT_Party
+INSERT INTO OPT_Party (PTY_ID, PTY_FirstName, PTY_LastName, PTY_Phone, PTY_SSN) VALUES
+('1', 'Pushpasri', 'Ramagiri', '123-456-7890', '123-45-6789'),
+('2', 'Sivamani', 'Pittala', '987-654-3210', '987-65-4321'),
+('3', 'Keerthana','Chittimalla', '100-200-300','562-46-6438'),
+('4', 'Madhu','Pinnam','432-398-498','198-87-6542');
+
+-- Insert sample data into SYS_State
+INSERT INTO SYS_State (Stt_ID, Stt_Name, Stt_Code) VALUES
+('1', 'India', 'IN'),
+('2','Calfornia', 'CA'),
+('3', 'Texas', 'TX'),
+('4', 'Philadelphia', 'PA');
+
+-- Insert sample data into OPT_Address
+INSERT INTO OPT_Address (Add_ID, Add_Line1, Add_Line2, Add_City, Add_State, Add_Zip, Add_PartyID) VALUES
+('1', '123 Srinagar St','Sc 4B','Hanamkonda','1','10001','1'),
+('2', '456 Elm St', 'Apt 4B', 'Los Angeles', '2', '90001', '2'),
+('3', '789 Oak St', '4A', 'Houston', '3', '77001', '3'),
+('4', '012 Pen St','4A','Syd','4','5432','4');
+
+--SELECT * FROM OPT_Party;
+
+--SELECT PTY_ID, PTY_FirstName, PTY_LastName FROM OPT_Party;
+
+--SELECT * FROM OPT_Party WHERE PTY_FirstName = 'Pushpasri' OR PTY_LastName = 'Pushpasri';
